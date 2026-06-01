@@ -1,0 +1,78 @@
+---
+---
+
+<section class="section-padding bg-rizq-cream relative overflow-hidden" id="vision">
+  
+  <!-- Decorative background -->
+  <div class="absolute top-10 right-10 text-[20rem] font-display text-rizq-blue/5 leading-none select-none">R</div>
+  
+  <div class="max-w-6xl mx-auto relative z-10">
+    
+    <!-- Section Label -->
+    <div class="reveal flex items-center gap-4 mb-8">
+      <span class="h-[1px] w-12 bg-rizq-red"></span>
+      <span class="text-rizq-red text-xs uppercase tracking-[0.4em] font-semibold">The Vision</span>
+    </div>
+
+    <!-- Heading -->
+    <h2 class="reveal heading-display text-rizq-charcoal text-4xl md:text-6xl lg:text-7xl mb-12 max-w-4xl">
+      Beyond the Plate:<br/>
+      <span class="italic text-gradient-royal">Precision, Pedigree,</span><br/>
+      <span class="font-serif italic">and Perfection.</span>
+    </h2>
+
+    <!-- Body -->
+    <div class="grid md:grid-cols-2 gap-12">
+      <p class="reveal font-serif text-lg md:text-xl text-rizq-charcoal/80 leading-relaxed italic">
+        At Rizq, our vision extends far beyond the kitchen. We are redefining the landscape of luxury catering in Bangladesh by merging exceptional culinary artistry with uncompromising operational excellence. Catering at the highest level—whether for an intimate VIP gathering or a grand gala of 10,000 guests—requires more than just great food; it demands flawless logistical mastery.
+      </p>
+      <p class="reveal font-serif text-lg md:text-xl text-rizq-charcoal/80 leading-relaxed italic">
+        That is why Rizq is driven by a dynamic leadership team of graduates from the nation's most prestigious institutions: <span class="text-rizq-blue font-semibold not-italic">IBA, Dhaka University, and North South University.</span> We bring boardroom-level professionalism, absolute integrity, and strategic precision to every event we touch. Our promise is simple: to deliver peace of mind and unforgettable flavors to those who expect nothing but the best.
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-rizq-charcoal/10">
+      <div class="text-center">
+        <div class="heading-display text-5xl md:text-6xl text-rizq-blue counter" data-target="10000">0</div>
+        <div class="text-rizq-charcoal/60 text-xs uppercase tracking-[0.2em] mt-2">Guests Served</div>
+      </div>
+      <div class="text-center">
+        <div class="heading-display text-5xl md:text-6xl text-rizq-red counter" data-target="500">0</div>
+        <div class="text-rizq-charcoal/60 text-xs uppercase tracking-[0.2em] mt-2">Events Catered</div>
+      </div>
+      <div class="text-center">
+        <div class="heading-display text-5xl md:text-6xl text-rizq-blue counter" data-target="50">0</div>
+        <div class="text-rizq-charcoal/60 text-xs uppercase tracking-[0.2em] mt-2">Signature Dishes</div>
+      </div>
+      <div class="text-center">
+        <div class="heading-display text-5xl md:text-6xl text-rizq-red counter" data-target="100">0</div>
+        <div class="text-rizq-charcoal/60 text-xs uppercase tracking-[0.2em] mt-2">% Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  document.querySelectorAll<HTMLElement>('.counter').forEach((counter) => {
+    const target = +(counter.dataset.target || '0');
+    ScrollTrigger.create({
+      trigger: counter,
+      start: 'top 85%',
+      onEnter: () => {
+        gsap.to(counter, {
+          textContent: target,
+          duration: 2.5,
+          ease: 'power2.out',
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            counter.textContent = Math.floor(+counter.textContent).toLocaleString() + '+';
+          }
+        });
+      }
+    });
+  });
+</script>

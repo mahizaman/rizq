@@ -1,0 +1,62 @@
+---
+const reasons = [
+  {
+    number: '01',
+    title: 'Uncompromising Quality & Freshness',
+    body: 'From the finest aromatic rice for our signature Kacchi Gourmet to the freshest premium cuts of meat, we procure only the highest-grade ingredients. Every dish delivers a vibrant, rich, and unforgettable flavor profile.',
+  },
+  {
+    number: '02',
+    title: 'Bespoke Culinary Curation',
+    body: 'No two celebrations are alike. We offer fully tailored culinary journeys — traditional Bengali feasts, contemporary fusion, or highly specific dietary accommodations. Every menu aligns perfectly with your vision.',
+  },
+  {
+    number: '03',
+    title: 'Masterful, White-Glove Service',
+    body: 'Managed by a leadership team with top-tier corporate acumen, our highly trained waitstaff, chefs, and event coordinators bring absolute professionalism. We anticipate your guests\' needs before they ask.',
+  },
+  {
+    number: '04',
+    title: 'Scalable Excellence & Transparent Prestige',
+    body: 'True luxury is the ability to deliver perfection at any scale. From VIP gatherings of 50 to royal-scale events of 10,000 — without a single drop in quality. Transparent pricing, magnificent execution.',
+  },
+];
+---
+
+<section class="section-padding bg-rizq-charcoal relative overflow-hidden">
+  
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, #D4A84B 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em] font-semibold">Why Choose Us</span>
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+      </div>
+      <h2 class="reveal heading-display text-rizq-cream text-4xl md:text-6xl lg:text-7xl">
+        Why Choose <span class="italic text-gradient-gold">Rizq?</span>
+      </h2>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid md:grid-cols-2 gap-8">
+      {reasons.map((reason) => (
+        <div class="reveal tilt-card bg-rizq-charcoal-soft border border-rizq-gold/10 p-10 hover:border-rizq-gold/40 transition-all duration-500 group cursor-hover">
+          <div class="heading-display text-7xl text-rizq-gold/20 group-hover:text-rizq-gold/60 transition-colors duration-500 mb-4">
+            {reason.number}
+          </div>
+          <h3 class="heading-display text-2xl md:text-3xl text-rizq-cream mb-4 group-hover:text-rizq-gold transition-colors duration-500">
+            {reason.title}
+          </h3>
+          <p class="text-rizq-cream/70 leading-relaxed font-serif italic text-lg">
+            {reason.body}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

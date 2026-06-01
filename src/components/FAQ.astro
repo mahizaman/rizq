@@ -1,0 +1,43 @@
+---
+const faqs = [
+  { q: "What's the minimum guest count Rizq caters for?", a: "We cater for events starting at 50 guests, ensuring the white-glove standard remains uncompromised at every scale." },
+  { q: "What's the maximum scale you can handle?", a: "Up to 10,000 guests per day with consistent quality. Our operational excellence is designed for royal-scale events." },
+  { q: "How far in advance should I book?", a: "We recommend 30-60 days in advance for weddings, and 7-14 days for corporate events. For peak season, earlier is better." },
+  { q: "Do you offer menu customization?", a: "Absolutely. Every menu is bespoke — designed around your event's theme, guest preferences, and dietary needs." },
+  { q: "Do you provide service staff and setup?", a: "Yes — white-glove waitstaff, chefs, event coordinators, and complete setup are included in every Rizq experience." },
+  { q: "Which areas do you serve?", a: "Dhaka and across Bangladesh. For large-scale events, we travel anywhere in the country with full logistical mastery." },
+  { q: "Do you accommodate dietary restrictions?", a: "Yes. All our food is halal-certified by default. We also offer vegetarian, jain, gluten-free, and international diets on request." },
+  { q: "How does pricing work?", a: "Transparent per-head pricing tailored to your menu. Tap 'Call for Price' on any dish or submit a booking inquiry for a custom quote." },
+];
+---
+
+<section class="section-padding bg-rizq-cream relative overflow-hidden" id="faq">
+  <div class="absolute bottom-10 left-10 text-[15rem] font-display text-rizq-red/5 leading-none select-none">?</div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="h-[1px] w-12 bg-rizq-red"></span>
+        <span class="text-rizq-red text-xs uppercase tracking-[0.4em] font-semibold">FAQ</span>
+        <span class="h-[1px] w-12 bg-rizq-red"></span>
+      </div>
+      <h2 class="reveal heading-display text-rizq-charcoal text-4xl md:text-6xl">
+        Frequently <span class="italic text-gradient-royal">Asked</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="reveal group bg-white border border-rizq-charcoal/10 hover:border-rizq-blue/30 transition-all duration-300 cursor-hover">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <span class="heading-display text-lg md:text-xl text-rizq-charcoal pr-4">{faq.q}</span>
+            <span class="text-rizq-red text-2xl flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+          </summary>
+          <div class="px-6 pb-6 text-rizq-charcoal/70 font-serif italic text-lg leading-relaxed">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

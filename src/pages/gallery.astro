@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+// Placeholder gallery — admin panel will manage these later
+const images = [
+  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
+  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
+  'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=80',
+  'https://images.unsplash.com/photo-1555244162-803834f70033?w=1200&q=80',
+  'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80',
+  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
+  'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1200&q=80',
+  'https://images.unsplash.com/photo-1574484284002-952d92456975?w=1200&q=80',
+  'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1200&q=80',
+];
+---
+
+<Layout title="Gallery — Rizq Catering">
+  <Navbar />
+
+  <!-- Page Hero -->
+  <section class="relative h-[50vh] flex items-center justify-center bg-rizq-charcoal overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-rizq-blue/30 to-rizq-charcoal"></div>
+    <div class="relative z-10 text-center px-6">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em]">Gallery</span>
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+      </div>
+      <h1 class="reveal heading-display text-rizq-cream text-5xl md:text-7xl lg:text-8xl">
+        Moments of <span class="italic text-gradient-gold">Excellence</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Masonry Gallery -->
+  <section class="section-padding bg-rizq-cream">
+    <div class="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6">
+      {images.map((src, i) => (
+        <div class="reveal mb-6 break-inside-avoid overflow-hidden cursor-hover group relative">
+          <img 
+            src={src} 
+            alt={`Gallery ${i + 1}`} 
+            class="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-rizq-blue/0 group-hover:bg-rizq-blue/30 transition-all duration-500 flex items-center justify-center">
+            <span class="text-rizq-cream opacity-0 group-hover:opacity-100 transition-opacity duration-500 heading-display text-2xl italic">View</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <p class="reveal text-center mt-16 text-rizq-charcoal/60 font-serif italic text-lg">
+      More moments being added regularly. Follow our journey.
+    </p>
+  </section>
+
+  <Footer />
+</Layout>

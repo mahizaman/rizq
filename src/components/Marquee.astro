@@ -1,0 +1,14 @@
+---
+const items = ['Kacchi Gourmet', 'Royal Roasts', 'White-Glove Service', 'Wedding Excellence', 'Bespoke Menus', 'Corporate Prestige'];
+---
+
+<div class="bg-rizq-blue py-6 overflow-hidden border-y border-rizq-gold/20">
+  <div class="flex gap-16 animate-marquee whitespace-nowrap">
+    {[...items, ...items, ...items].map((item) => (
+      <div class="flex items-center gap-16">
+        <span class="text-rizq-cream font-display text-3xl md:text-4xl italic">{item}</span>
+        <span class="text-rizq-gold text-2xl">✦</span>
+      </div>
+    ))}
+  </div>
+</div>

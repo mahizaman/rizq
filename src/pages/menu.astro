@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const whatsappNumber = '8801XXXXXXXXX'; // <-- change this later to your real number
+
+const dishes = [
+  {
+    name: 'Signature Kacchi Gourmet',
+    description: 'The crown jewel. Aromatic basmati, slow-cooked premium mutton, saffron, ghee.',
+    image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=80',
+    badge: 'Best Seller',
+  },
+  {
+    name: 'Royal Roast Chicken',
+    description: 'Whole tandoor-marinated chicken, fragrant spices, charcoal finish.',
+    image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80',
+  },
+  {
+    name: 'Beef Rezala',
+    description: 'Creamy, mildly-spiced Mughlai classic with cashew & yogurt gravy.',
+    image: 'https://images.unsplash.com/photo-1545247181-516773cae754?w=900&q=80',
+  },
+  {
+    name: 'Chicken Reshmi Kebab',
+    description: 'Silky, melt-in-mouth grilled skewers with subtle cream finish.',
+    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=900&q=80',
+  },
+  {
+    name: 'Mutton Rogan Josh',
+    description: 'Rich Kashmiri-style slow-braised mutton curry, deeply aromatic.',
+    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=80',
+  },
+  {
+    name: 'Borhani',
+    description: 'Traditional spiced yogurt drink — the perfect Kacchi companion.',
+    image: 'https://images.unsplash.com/photo-1626202378011-1be437b352aa?w=900&q=80',
+  },
+  {
+    name: 'Jorda',
+    description: 'Saffron-sweet finale, pistachio-laden royal dessert rice.',
+    image: 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=900&q=80',
+  },
+  {
+    name: 'Shahi Tukra',
+    description: 'Royal bread pudding soaked in saffron-cardamom rabri.',
+    image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80',
+  },
+];
+---
+
+<Layout title="The Menu — Rizq Catering">
+  <Navbar />
+
+  <!-- Page Hero -->
+  <section class="relative h-[60vh] flex items-center justify-center bg-rizq-charcoal overflow-hidden">
+    <div class="absolute inset-0 opacity-25" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1920&q=80'); background-size: cover; background-position: center;"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-rizq-charcoal/60 to-rizq-charcoal"></div>
+    <div class="relative z-10 text-center px-6">
+      <div class="reveal flex items-center justify-center gap-4 mb-6">
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em]">The Menu</span>
+        <span class="h-[1px] w-12 bg-rizq-gold"></span>
+      </div>
+      <h1 class="reveal heading-display text-rizq-cream text-5xl md:text-7xl lg:text-8xl">
+        Our <span class="italic text-gradient-gold">Best Sellers</span>
+      </h1>
+      <p class="reveal mt-6 text-rizq-cream/70 font-serif italic text-xl max-w-2xl mx-auto">
+        Every dish, a celebration. Tap any to inquire about custom packages.
+      </p>
+    </div>
+  </section>
+
+  <!-- Menu Grid -->
+  <section class="section-padding bg-rizq-cream">
+    <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {dishes.map((dish) => (
+        <div class="reveal tilt-card group bg-white shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-hover relative">
+          
+          {dish.badge && (
+            <span class="absolute top-4 left-4 z-10 bg-rizq-red text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1">
+              {dish.badge}
+            </span>
+          )}
+
+          <div class="aspect-square overflow-hidden">
+            <img src={dish.image} alt={dish.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+          </div>
+          
+          <div class="p-6">
+            <h3 class="heading-display text-2xl text-rizq-charcoal mb-2 group-hover:text-rizq-blue transition-colors">
+              {dish.name}
+            </h3>
+            <p class="text-rizq-charcoal/70 font-serif italic text-sm mb-6 leading-relaxed">
+              {dish.description}
+            </p>
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=Hi%20Rizq,%20I'd%20like%20to%20know%20the%20price%20for%20${encodeURIComponent(dish.name)}`}
+              target="_blank"
+              rel="noopener"
+              class="block w-full text-center py-3 bg-rizq-blue text-white uppercase tracking-[0.2em] text-xs font-semibold hover:bg-rizq-red transition-colors duration-300"
+            >
+              Call for Price
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Custom Packages CTA -->
+    <div class="reveal max-w-5xl mx-auto mt-24 bg-rizq-charcoal p-12 md:p-20 text-center relative overflow-hidden">
+      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, #D4A84B 1px, transparent 1px); background-size: 30px 30px;"></div>
+      <div class="relative z-10">
+        <h3 class="heading-display text-4xl md:text-5xl text-rizq-cream mb-6">
+          Looking for a <span class="italic text-gradient-gold">Custom Package?</span>
+        </h3>
+        <p class="font-serif italic text-rizq-cream/70 text-xl mb-10 max-w-2xl mx-auto">
+          We design bespoke menus tailored to your event, palate, and prestige.
+        </p>
+        <a 
+          href={`https://wa.me/${whatsappNumber}?text=Hi%20Rizq,%20I'd%20like%20to%20discuss%20a%20custom%20package`}
+          target="_blank"
+          rel="noopener"
+          class="magnetic inline-block px-10 py-4 bg-rizq-red text-white uppercase tracking-[0.2em] text-sm font-semibold hover:shadow-[0_15px_40px_rgba(220,38,38,0.5)] transition-all duration-300"
+        >
+          Discuss on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
