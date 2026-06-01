@@ -139,8 +139,17 @@ import { NAV_LINKS } from "../config/site.js";
 <script>
   const toggle = document.getElementById("mobile-toggle");
   const menu = document.getElementById("mobile-menu");
+
+  // Toggle menu open/close on hamburger click
   toggle?.addEventListener("click", () => {
     menu?.classList.toggle("hidden");
+  });
+
+  // Auto-close menu when any link inside it is clicked
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
   });
 
   // Add shadow to navbar on scroll
@@ -153,3 +162,4 @@ import { NAV_LINKS } from "../config/site.js";
     }
   });
 </script>
+

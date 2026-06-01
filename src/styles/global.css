@@ -1,28 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-  }
+@theme {
+  --color-royal: #1E3A8A;
+  --color-royal-dark: #172a63;
+  --color-royal-light: #3b5bbd;
+  --color-crimson: #DC2626;
+  --color-crimson-dark: #a31d1d;
+  --color-green: #65A30D;
+  --color-ivory: #FAF7F2;
+  --color-ivory-dark: #F0EAE0;
+  --color-charcoal: #1F2937;
+  --color-charcoal-light: #4B5563;
 
-  body {
-    font-family: "Inter", system-ui, sans-serif;
-  }
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
 
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-family: "Playfair Display", Georgia, serif;
-    letter-spacing: -0.01em;
-  }
+  --animate-smoke-1: smoke1 6s ease-in-out infinite;
+  --animate-smoke-2: smoke2 7s ease-in-out infinite;
+  --animate-smoke-3: smoke3 8s ease-in-out infinite;
+  --animate-fade-up: fadeUp 0.8s ease-out forwards;
+  --animate-fade-in: fadeIn 1s ease-out forwards;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@keyframes smoke1 {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.6; }
+  100% { transform: translateY(-180px) translateX(-20px) scale(2.5); opacity: 0; }
+}
+@keyframes smoke2 {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.5; }
+  100% { transform: translateY(-200px) translateX(15px) scale(2.8); opacity: 0; }
+}
+@keyframes smoke3 {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.4; }
+  100% { transform: translateY(-220px) translateX(-5px) scale(3); opacity: 0; }
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.text-balance {
+  text-wrap: balance;
 }
