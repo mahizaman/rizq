@@ -1,103 +1,163 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config/site.js";
+
+const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
 
 const services = [
   {
-    id: 'wedding',
-    number: '01',
-    title: 'Wedding Ceremonies',
-    subtitle: 'Grandeur, Perfectly Executed',
-    heading: 'For the families who expect nothing less than absolute perfection.',
-    body: 'A wedding of true distinction requires more than just exceptional food; it demands flawless logistical mastery. At Rizq, we specialize in curating high-society weddings where culinary excellence meets breathtaking scale. Whether you are hosting an intimate, exclusive Mehendi for 50 of your closest family members or a magnificent, royal Walima for 10,000 guests, our precision never wavers. We bring the rich, authentic heritage of our Kacchi Gourmet and premium roasts to the table with white-glove service.',
-    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80',
+    id: "weddings",
+    title: "Wedding Ceremonies",
+    subtitle: "Grandeur, Perfectly Executed",
+    headline: "For the families who expect nothing less than absolute perfection.",
+    body: "A wedding of true distinction requires more than just exceptional food; it demands flawless logistical mastery. At Rizq, we specialize in curating high-society weddings where culinary excellence meets breathtaking scale. Whether you are hosting an intimate, exclusive Mehendi for 50 of your closest family members or a magnificent, royal Walima for 10,000 guests, our precision never wavers. We bring the rich, authentic heritage of our Kacchi Gourmet and premium roasts to the table with white-glove service. We manage the immense complexities of elite catering so you and your family can immerse yourselves entirely in the grandeur of your celebration.",
+    image: "/service-wedding.jpg",
+    icon: "💍",
   },
   {
-    id: 'social',
-    number: '02',
-    title: 'Social Events',
-    subtitle: 'The Art of Exclusive Hosting',
-    heading: 'Milestones celebrated with uncompromising sophistication.',
-    body: 'For society\'s most discerning hosts, a private event is a reflection of personal prestige. Rizq transforms your private milestones—from lavish anniversary galas to elite family reunions—into masterclasses in hospitality. Catering to groups from 50 upwards, we design bespoke menus that cater to refined palates, pairing our signature dishes with an elegant presentation. You bring the occasion; we bring an unparalleled culinary experience that leaves your guests thoroughly impressed.',
-    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1600&q=80',
+    id: "social",
+    title: "Social Events",
+    subtitle: "The Art of Exclusive Hosting",
+    headline: "Milestones celebrated with uncompromising sophistication.",
+    body: "For society's most discerning hosts, a private event is a reflection of personal prestige. Rizq transforms your private milestones—from lavish anniversary galas to elite family reunions—into masterclasses in hospitality. We understand that when you invite guests into your world, the standard must be extraordinary. Catering to groups from 50 upwards, we design bespoke menus that cater to refined palates, pairing our signature dishes with an elegant presentation. You bring the occasion; we bring an unparalleled culinary experience that leaves your guests thoroughly impressed.",
+    image: "/service-social.jpg",
+    icon: "🥂",
   },
   {
-    id: 'corporate',
-    number: '03',
-    title: 'Corporate Events',
-    subtitle: 'Boardroom Prestige & Gala Excellence',
-    heading: 'Catering to industry leaders, multinationals, and visionaries.',
-    body: 'In the highest tiers of business, every detail of an event communicates your brand\'s power. Founded by graduates of the nation\'s top business institutions, Rizq implicitly understands the high-stakes environment of corporate Dhaka. From exclusive C-suite dining and high-profile product launches to massive annual corporate galas hosting thousands, we deliver absolute culinary professionalism. Our premium setups, customized menus, and meticulous service ensure your VIP clients experience the exact standard your company represents.',
-    image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600&q=80',
+    id: "corporate",
+    title: "Corporate Events",
+    subtitle: "Boardroom Prestige & Gala Excellence",
+    headline: "Catering to industry leaders, multinationals, and visionaries.",
+    body: "In the highest tiers of business, every detail of an event communicates your brand's power and market position. Founded by graduates of the nation's top business institutions, Rizq implicitly understands the high-stakes environment of corporate Dhaka. From exclusive C-suite dining and high-profile product launches to massive annual corporate galas hosting thousands, we deliver absolute culinary professionalism. Our premium setups, customized menus, and meticulous service ensure that your VIP clients, international delegates, and top-tier executives experience the exact standard of excellence your company represents.",
+    image: "/service-corporate.jpg",
+    icon: "🏛️",
   },
   {
-    id: 'industrial',
-    number: '04',
-    title: 'Industrial Catering',
-    subtitle: 'Elevating Catering at Scale',
-    heading: 'Premium sustenance for the workforce of top-tier enterprises.',
-    body: 'Operating at a massive scale should never mean sacrificing quality. Rizq redefines industrial catering for top-tier corporations, manufacturing giants, and sprawling campuses. Capable of seamlessly serving up to 10,000 premium meals daily, we bring our foundational philosophy of quality, freshness, and stringent hygiene to your workforce. Partner with Rizq to elevate your institutional dining to a standard that reflects your company\'s commitment to its people.',
-    image: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=1600&q=80',
+    id: "industrial",
+    title: "Industrial & Institutional Catering",
+    subtitle: "Elevating Catering at Scale",
+    headline: "Premium sustenance for the workforce of top-tier enterprises.",
+    body: "Operating at a massive scale should never mean sacrificing quality. Rizq redefines industrial catering for top-tier corporations, manufacturing giants, and sprawling campuses. Capable of seamlessly serving up to 10,000 premium meals daily, we bring our foundational philosophy of quality, freshness, and stringent hygiene to your workforce. We provide nutritious, exceptional food that respects your team and fuels productivity. Partner with Rizq to elevate your institutional dining to a standard that reflects your company's commitment to its people.",
+    image: "/service-industrial.jpg",
+    icon: "🏭",
   },
 ];
 ---
 
 <Layout title="Services — Rizq Catering">
-  <Navbar />
-
-  <!-- Page Hero -->
-  <section class="relative h-[60vh] flex items-center justify-center bg-rizq-charcoal overflow-hidden">
-    <div class="absolute inset-0 opacity-30" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80'); background-size: cover; background-position: center;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-rizq-charcoal/60 via-rizq-charcoal/70 to-rizq-charcoal"></div>
-    <div class="relative z-10 text-center px-6">
-      <div class="reveal flex items-center justify-center gap-4 mb-6">
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em]">Our Services</span>
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-      </div>
-      <h1 class="reveal heading-display text-rizq-cream text-5xl md:text-7xl lg:text-8xl">
-        Tailored to <span class="italic text-gradient-gold">Excellence</span>
+  <!-- Page header -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-royal to-royal-dark text-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-crimson uppercase tracking-[0.3em] text-sm font-semibold mb-4">What We Offer</p>
+      <h1 class="font-display text-4xl md:text-6xl mb-6 leading-tight text-balance">
+        Catering, Curated for Every Scale
       </h1>
+      <p class="text-ivory/80 text-lg md:text-xl max-w-2xl mx-auto">
+        From intimate gatherings to royal galas — explore the four pillars of our service.
+      </p>
     </div>
   </section>
 
-  <!-- Services List -->
-  {services.map((service, i) => (
-    <section id={service.id} class={`section-padding ${i % 2 === 0 ? 'bg-rizq-cream' : 'bg-rizq-charcoal'}`}>
-      <div class={`max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center ${i % 2 === 0 ? '' : 'lg:grid-flow-dense'}`}>
-        
-        <!-- Image -->
-        <div class={`reveal relative ${i % 2 === 0 ? '' : 'lg:col-start-2'}`}>
-          <div class="aspect-[4/5] overflow-hidden tilt-card cursor-hover">
-            <img src={service.image} alt={service.title} class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
-          </div>
-          <div class={`absolute -top-8 ${i % 2 === 0 ? '-left-8' : '-right-8'} heading-display text-[10rem] leading-none ${i % 2 === 0 ? 'text-rizq-red/20' : 'text-rizq-gold/30'} select-none`}>
-            {service.number}
-          </div>
-        </div>
-
-        <!-- Content -->
-        <div class="reveal">
-          <h3 class={`heading-display text-4xl md:text-6xl mb-4 ${i % 2 === 0 ? 'text-rizq-charcoal' : 'text-rizq-cream'}`}>
-            {service.title}
-          </h3>
-          <p class={`font-serif italic text-2xl mb-8 ${i % 2 === 0 ? 'text-rizq-red' : 'text-rizq-gold'}`}>
-            {service.subtitle}
-          </p>
-          <h4 class={`heading-serif text-2xl md:text-3xl italic mb-6 ${i % 2 === 0 ? 'text-rizq-blue' : 'text-rizq-cream/90'}`}>
-            "{service.heading}"
-          </h4>
-          <p class={`text-lg leading-relaxed font-serif ${i % 2 === 0 ? 'text-rizq-charcoal/80' : 'text-rizq-cream/70'}`}>
-            {service.body}
-          </p>
-          <a href="/book-event" class="magnetic inline-block mt-10 px-8 py-3 bg-rizq-red text-white uppercase tracking-[0.2em] text-xs font-semibold hover:shadow-[0_10px_30px_rgba(220,38,38,0.4)] transition-all duration-300">
-            Inquire Now
+  <!-- Quick jump nav -->
+  <div class="sticky top-20 lg:top-24 z-30 bg-ivory/95 backdrop-blur border-b border-ivory-dark">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
+      {
+        services.map((s) => (
+          <a
+            href={`#${s.id}`}
+            class="shrink-0 px-4 py-2 text-sm font-medium text-charcoal-light hover:text-royal hover:bg-white rounded-full transition-all whitespace-nowrap"
+          >
+            {s.icon} {s.title}
           </a>
-        </div>
-      </div>
-    </section>
-  ))}
+        ))
+      }
+    </div>
+  </div>
 
-  <Footer />
+  <!-- Service sections -->
+  {
+    services.map((s, i) => (
+      <section
+        id={s.id}
+        class={`py-20 lg:py-28 px-6 ${i % 2 === 0 ? "bg-ivory" : "bg-white"} scroll-mt-32`}
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            <!-- Image -->
+            <div class="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-royal to-charcoal">
+              <img
+                src={s.image}
+                alt={s.title}
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'"
+              />
+              <div class="absolute inset-0 flex items-center justify-center text-white/30 text-9xl pointer-events-none">
+                {s.icon}
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div>
+              <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">
+                {String(i + 1).padStart(2, "0")} — {s.subtitle}
+              </p>
+              <h2 class="font-display text-3xl md:text-5xl text-royal mb-5 leading-tight text-balance">
+                {s.title}
+              </h2>
+              <p class="text-xl text-charcoal italic mb-6 font-display">
+                {s.headline}
+              </p>
+              <p class="text-charcoal-light leading-relaxed mb-8">
+                {s.body}
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a
+                  href="/book"
+                  class="inline-flex items-center justify-center gap-2 bg-crimson hover:bg-crimson-dark text-white font-semibold px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  Book This Service
+                </a>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 bg-white border-2 border-royal text-royal hover:bg-royal hover:text-white font-semibold px-6 py-3 rounded-full transition-all"
+                >
+                  Inquire on WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <!-- Final CTA strip -->
+  <section class="py-16 px-6 bg-charcoal text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-3xl md:text-4xl text-white mb-4">
+        Ready to elevate your event?
+      </h2>
+      <p class="text-ivory/70 mb-8 text-lg">
+        Let's curate an experience your guests will never forget.
+      </p>
+      <a
+        href="/book"
+        class="inline-flex items-center gap-2 bg-crimson hover:bg-crimson-dark text-white font-semibold px-8 py-4 rounded-full transition-all shadow-xl hover:shadow-2xl hover:scale-105"
+      >
+        Book an Event Now →
+      </a>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

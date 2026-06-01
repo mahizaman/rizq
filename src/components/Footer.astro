@@ -1,57 +1,78 @@
 ---
+import { SITE, NAV_LINKS } from "../config/site.js";
+const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(SITE.whatsappMessage)}`;
+const year = new Date().getFullYear();
 ---
 
-<footer class="bg-rizq-charcoal pt-24 pb-10 px-8 md:px-16 relative overflow-hidden">
-  
-  <!-- Decorative background -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, #D4A84B 1px, transparent 1px); background-size: 50px 50px;"></div>
-
-  <div class="max-w-7xl mx-auto relative z-10">
-    
-    <!-- Top section -->
-    <div class="grid md:grid-cols-4 gap-12 mb-16">
-      
-      <!-- Logo & Tagline -->
-      <div class="md:col-span-2">
-        <img src="/logo.png" alt="Rizq" class="h-24 mb-6 brightness-0 invert opacity-90" />
-        <p class="text-rizq-cream/70 font-serif italic text-xl mb-4 max-w-md">
-          Delightfully Delicious — where culinary excellence meets flawless execution.
+<footer class="bg-charcoal text-ivory pt-16 pb-8 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <img src="/rizq-logo.png" alt="Rizq" class="h-16 mb-4 brightness-0 invert" />
+        <p class="text-ivory/70 leading-relaxed mb-5 max-w-md">
+          Bangladesh's premier luxury catering — delivering uncompromising culinary excellence for the most discerning hosts.
         </p>
-        <p class="text-rizq-cream/50 text-sm leading-relaxed max-w-md">
-          Premium catering for the families and corporations who demand nothing less than perfection.
+        <p class="text-ivory/60 text-sm leading-relaxed">
+          {SITE.address}
         </p>
       </div>
 
       <!-- Quick Links -->
       <div>
-        <h4 class="text-rizq-gold uppercase text-xs tracking-[0.3em] mb-6">Explore</h4>
+        <h4 class="font-display text-xl text-white mb-5">Explore</h4>
         <ul class="space-y-3">
-          <li><a href="/" class="text-rizq-cream/70 hover:text-rizq-gold transition-colors">Home</a></li>
-          <li><a href="/services" class="text-rizq-cream/70 hover:text-rizq-gold transition-colors">Services</a></li>
-          <li><a href="/menu" class="text-rizq-cream/70 hover:text-rizq-gold transition-colors">The Menu</a></li>
-          <li><a href="/gallery" class="text-rizq-cream/70 hover:text-rizq-gold transition-colors">Gallery</a></li>
-          <li><a href="/book-event" class="text-rizq-cream/70 hover:text-rizq-gold transition-colors">Book an Event</a></li>
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-ivory/70 hover:text-crimson transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href="/book" class="text-ivory/70 hover:text-crimson transition-colors">
+              Book an Event
+            </a>
+          </li>
         </ul>
       </div>
 
       <!-- Contact -->
       <div>
-        <h4 class="text-rizq-gold uppercase text-xs tracking-[0.3em] mb-6">Get in Touch</h4>
-        <ul class="space-y-3 text-rizq-cream/70 text-sm">
-          <li>House 254, Road 3<br/>Baridhara DOHS<br/>Dhaka, Bangladesh</li>
-          <li><a href="https://wa.me/8801XXXXXXXXX" class="hover:text-rizq-gold transition-colors">WhatsApp: +880 1XXX-XXXXXX</a></li>
-          <li><a href="mailto:hello@rizq.com" class="hover:text-rizq-gold transition-colors">hello@rizq.com</a></li>
+        <h4 class="font-display text-xl text-white mb-5">Connect</h4>
+        <ul class="space-y-3">
+          <li>
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="text-ivory/70 hover:text-crimson transition-colors flex items-center gap-2">
+              WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${SITE.email}`} class="text-ivory/70 hover:text-crimson transition-colors">
+              {SITE.email}
+            </a>
+          </li>
+          <li>
+            <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" class="text-ivory/70 hover:text-crimson transition-colors">
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" class="text-ivory/70 hover:text-crimson transition-colors">
+              Instagram
+            </a>
+          </li>
         </ul>
       </div>
     </div>
 
-    <!-- Divider -->
-    <div class="h-[1px] bg-gradient-to-r from-transparent via-rizq-gold/30 to-transparent mb-8"></div>
-
-    <!-- Bottom -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-rizq-cream/40 text-xs uppercase tracking-[0.3em]">© 2025 Rizq Catering. All rights reserved.</p>
-      <p class="text-rizq-cream/40 text-xs italic">Crafted with passion in Dhaka.</p>
+    <div class="border-t border-ivory/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-ivory/50">
+      <p>© {year} Rizq Catering. All rights reserved.</p>
+      <p class="italic">Delightfully Delicious.</p>
     </div>
   </div>
 </footer>

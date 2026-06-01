@@ -1,62 +1,52 @@
 ---
-const reasons = [
+const pillars = [
   {
-    number: '01',
-    title: 'Uncompromising Quality & Freshness',
-    body: 'From the finest aromatic rice for our signature Kacchi Gourmet to the freshest premium cuts of meat, we procure only the highest-grade ingredients. Every dish delivers a vibrant, rich, and unforgettable flavor profile.',
+    num: "01",
+    title: "Uncompromising Quality & Freshness",
+    body: "From the finest aromatic rice for our signature Kacchi Gourmet to premium cuts of meat and locally sourced produce, we procure only the highest-grade ingredients. We never compromise on authenticity.",
   },
   {
-    number: '02',
-    title: 'Bespoke Culinary Curation',
-    body: 'No two celebrations are alike. We offer fully tailored culinary journeys — traditional Bengali feasts, contemporary fusion, or highly specific dietary accommodations. Every menu aligns perfectly with your vision.',
+    num: "02",
+    title: "Bespoke Culinary Curation",
+    body: "Moving beyond rigid standard packages, we design fully tailored culinary journeys. From traditional Bengali feasts to contemporary fusion or specific dietary accommodations for international guests.",
   },
   {
-    number: '03',
-    title: 'Masterful, White-Glove Service',
-    body: 'Managed by a leadership team with top-tier corporate acumen, our highly trained waitstaff, chefs, and event coordinators bring absolute professionalism. We anticipate your guests\' needs before they ask.',
+    num: "03",
+    title: "Masterful, White-Glove Service",
+    body: "Managed by a leadership team with top-tier corporate acumen, our highly trained waitstaff, chefs, and coordinators bring absolute professionalism — anticipating needs before they're voiced.",
   },
   {
-    number: '04',
-    title: 'Scalable Excellence & Transparent Prestige',
-    body: 'True luxury is the ability to deliver perfection at any scale. From VIP gatherings of 50 to royal-scale events of 10,000 — without a single drop in quality. Transparent pricing, magnificent execution.',
+    num: "04",
+    title: "Scalable Excellence & Transparent Prestige",
+    body: "True luxury is the ability to deliver perfection at any scale. From intimate VIP gatherings of 50 to royal-scale events of 10,000 — transparent, competitive pricing, magnificent guest experiences.",
   },
 ];
 ---
 
-<section class="section-padding bg-rizq-charcoal relative overflow-hidden">
-  
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, #D4A84B 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-  <div class="max-w-7xl mx-auto relative z-10">
-    
-    <!-- Header -->
-    <div class="text-center mb-20">
-      <div class="reveal flex items-center justify-center gap-4 mb-6">
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em] font-semibold">Why Choose Us</span>
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-      </div>
-      <h2 class="reveal heading-display text-rizq-cream text-4xl md:text-6xl lg:text-7xl">
-        Why Choose <span class="italic text-gradient-gold">Rizq?</span>
-      </h2>
+<section class="py-20 lg:py-28 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">Why Choose Us</p>
+      <h2 class="font-display text-4xl md:text-5xl text-royal mb-4">Why Choose Rizq?</h2>
+      <p class="text-charcoal-light max-w-2xl mx-auto text-lg">
+        Four pillars that define every event we touch.
+      </p>
     </div>
 
-    <!-- Grid -->
     <div class="grid md:grid-cols-2 gap-8">
-      {reasons.map((reason) => (
-        <div class="reveal tilt-card bg-rizq-charcoal-soft border border-rizq-gold/10 p-10 hover:border-rizq-gold/40 transition-all duration-500 group cursor-hover">
-          <div class="heading-display text-7xl text-rizq-gold/20 group-hover:text-rizq-gold/60 transition-colors duration-500 mb-4">
-            {reason.number}
+      {
+        pillars.map((p) => (
+          <div class="relative bg-ivory rounded-2xl p-8 lg:p-10 hover:shadow-xl transition-all border border-ivory-dark group">
+            <span class="absolute top-6 right-6 font-display text-7xl text-royal/10 group-hover:text-crimson/20 transition-colors">
+              {p.num}
+            </span>
+            <h3 class="font-display text-2xl lg:text-3xl text-royal mb-4 relative z-10">
+              {p.title}
+            </h3>
+            <p class="text-charcoal-light leading-relaxed relative z-10">{p.body}</p>
           </div>
-          <h3 class="heading-display text-2xl md:text-3xl text-rizq-cream mb-4 group-hover:text-rizq-gold transition-colors duration-500">
-            {reason.title}
-          </h3>
-          <p class="text-rizq-cream/70 leading-relaxed font-serif italic text-lg">
-            {reason.body}
-          </p>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

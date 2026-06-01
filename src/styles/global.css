@@ -1,198 +1,28 @@
-@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ====== Base Reset ====== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Playfair Display", Georgia, serif;
+    letter-spacing: -0.01em;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  background: #0F172A;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: #FAF7F0;
-  color: #0F172A;
-  overflow-x: hidden;
-  cursor: none;
-}
-
-/* ====== Custom Cursor ====== */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: #D4A84B;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.15s ease-out;
-  mix-blend-mode: difference;
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid #D4A84B;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transition: transform 0.3s ease-out, width 0.3s, height 0.3s;
-}
-
-.cursor-grow {
-  transform: scale(2.5) !important;
-  background: rgba(212, 168, 75, 0.3) !important;
-  border-color: transparent !important;
-}
-
-@media (max-width: 768px) {
-  body { cursor: auto; }
-  .cursor-dot, .cursor-ring { display: none; }
-}
-
-/* ====== Selection ====== */
-::selection {
-  background: #1E3A8A;
-  color: #FAF7F0;
-}
-
-/* ====== Scrollbar ====== */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0F172A; }
-::-webkit-scrollbar-thumb { background: #1E3A8A; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #D4A84B; }
-
-/* ====== Utility Classes ====== */
-.text-gradient-gold {
-  background: linear-gradient(135deg, #D4A84B 0%, #F5D78B 50%, #D4A84B 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-royal {
-  background: linear-gradient(135deg, #1E3A8A 0%, #DC2626 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.shimmer-bg {
-  background: linear-gradient(90deg, transparent, rgba(212, 168, 75, 0.3), transparent);
-  background-size: 1000px 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-/* ====== Logo Intro Animation ====== */
-.intro-overlay {
-  position: fixed;
-  inset: 0;
-  background: #0F172A;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.intro-logo {
-  width: 60vw;
-  max-width: 600px;
-  opacity: 0;
-  transform: scale(0.5);
-}
-
-/* ====== Reveal Animation Setup ====== */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-}
-
-.split-char {
-  display: inline-block;
-  overflow: hidden;
-}
-
-/* ====== Magnetic Button ====== */
-.magnetic {
-  display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-/* ====== Floating WhatsApp ====== */
-.whatsapp-float {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 65px;
-  height: 65px;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9000;
-  box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
-  animation: float 3s ease-in-out infinite;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.15);
-}
-
-.whatsapp-float::before {
-  content: '';
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 2px solid #25D366;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
-
-/* ====== Tilt Card ====== */
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease-out;
-}
-
-/* ====== Headings ====== */
-.heading-display {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
-}
-
-.heading-serif {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-}
-
-/* ====== Section Padding ====== */
-.section-padding {
-  padding: 120px 8vw;
-}
-
-@media (max-width: 768px) {
-  .section-padding { padding: 80px 6vw; }
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

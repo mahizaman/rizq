@@ -1,43 +1,70 @@
 ---
 const faqs = [
-  { q: "What's the minimum guest count Rizq caters for?", a: "We cater for events starting at 50 guests, ensuring the white-glove standard remains uncompromised at every scale." },
-  { q: "What's the maximum scale you can handle?", a: "Up to 10,000 guests per day with consistent quality. Our operational excellence is designed for royal-scale events." },
-  { q: "How far in advance should I book?", a: "We recommend 30-60 days in advance for weddings, and 7-14 days for corporate events. For peak season, earlier is better." },
-  { q: "Do you offer menu customization?", a: "Absolutely. Every menu is bespoke — designed around your event's theme, guest preferences, and dietary needs." },
-  { q: "Do you provide service staff and setup?", a: "Yes — white-glove waitstaff, chefs, event coordinators, and complete setup are included in every Rizq experience." },
-  { q: "Which areas do you serve?", a: "Dhaka and across Bangladesh. For large-scale events, we travel anywhere in the country with full logistical mastery." },
-  { q: "Do you accommodate dietary restrictions?", a: "Yes. All our food is halal-certified by default. We also offer vegetarian, jain, gluten-free, and international diets on request." },
-  { q: "How does pricing work?", a: "Transparent per-head pricing tailored to your menu. Tap 'Call for Price' on any dish or submit a booking inquiry for a custom quote." },
+  {
+    q: "What's the minimum and maximum number of guests Rizq caters for?",
+    a: "We cater intimate gatherings starting from 50 guests and have the operational capacity to flawlessly serve up to 10,000 guests at royal-scale events — without compromising quality or service.",
+  },
+  {
+    q: "How far in advance should I book Rizq for my event?",
+    a: "For weddings and large galas, we recommend booking 2-3 months in advance to secure your date and allow ample time for bespoke menu curation. For corporate events or smaller social gatherings, 3-4 weeks is typically sufficient. Premium dates may book out earlier.",
+  },
+  {
+    q: "Do you offer customized menus or only fixed packages?",
+    a: "We specialize in fully tailored culinary journeys. While we have signature Best Sellers, every menu is curated to reflect your event's personal vision — whether traditional Bengali, fusion, or international dietary accommodations.",
+  },
+  {
+    q: "What's included in the catering service?",
+    a: "Our standard offering includes premium ingredients, expert chefs, elegant presentation, trained waitstaff, full event coordination, serving equipment, and seamless logistics. Custom add-ons like decor, live counters, and specialty stations are available on request.",
+  },
+  {
+    q: "Can you accommodate dietary restrictions and international guests?",
+    a: "Absolutely. We regularly cater for guests with halal, vegetarian, vegan, gluten-free, and other specific dietary needs — including international corporate delegates with refined or restricted palates.",
+  },
+  {
+    q: "What's your pricing structure?",
+    a: "Pricing is transparent and depends on menu selection, guest count, service level, and event complexity. We provide detailed, itemized quotes after understanding your vision. Contact us via WhatsApp or our booking form for a personalized estimate.",
+  },
+  {
+    q: "Do you provide service outside Dhaka?",
+    a: "Yes. While our base is in Dhaka, we have successfully executed large-scale events across Bangladesh. Travel and logistics are accounted for transparently in your quote.",
+  },
+  {
+    q: "How do I book Rizq for my event?",
+    a: "The fastest way is to click 'Book an Event' or chat with us directly on WhatsApp. Share your event date, guest count, and vision — and our team will reach out within 24 hours to begin curating your experience.",
+  },
 ];
 ---
 
-<section class="section-padding bg-rizq-cream relative overflow-hidden" id="faq">
-  <div class="absolute bottom-10 left-10 text-[15rem] font-display text-rizq-red/5 leading-none select-none">?</div>
-
-  <div class="max-w-4xl mx-auto relative z-10">
+<section class="py-20 lg:py-28 px-6 bg-ivory">
+  <div class="max-w-4xl mx-auto">
     <div class="text-center mb-16">
-      <div class="reveal flex items-center justify-center gap-4 mb-6">
-        <span class="h-[1px] w-12 bg-rizq-red"></span>
-        <span class="text-rizq-red text-xs uppercase tracking-[0.4em] font-semibold">FAQ</span>
-        <span class="h-[1px] w-12 bg-rizq-red"></span>
-      </div>
-      <h2 class="reveal heading-display text-rizq-charcoal text-4xl md:text-6xl">
-        Frequently <span class="italic text-gradient-royal">Asked</span>
-      </h2>
+      <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">FAQ</p>
+      <h2 class="font-display text-4xl md:text-5xl text-royal mb-4">Frequently Asked</h2>
+      <p class="text-charcoal-light max-w-2xl mx-auto text-lg">
+        Answers to what discerning hosts most often ask.
+      </p>
     </div>
 
-    <div class="space-y-4">
-      {faqs.map((faq) => (
-        <details class="reveal group bg-white border border-rizq-charcoal/10 hover:border-rizq-blue/30 transition-all duration-300 cursor-hover">
-          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-            <span class="heading-display text-lg md:text-xl text-rizq-charcoal pr-4">{faq.q}</span>
-            <span class="text-rizq-red text-2xl flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-rizq-charcoal/70 font-serif italic text-lg leading-relaxed">
-            {faq.a}
-          </div>
-        </details>
-      ))}
+    <div class="space-y-3">
+      {
+        faqs.map((f, i) => (
+          <details class="group bg-white rounded-xl border border-ivory-dark overflow-hidden hover:shadow-md transition-shadow">
+            <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none">
+              <h3 class="font-display text-lg md:text-xl text-royal pr-4">
+                {f.q}
+              </h3>
+              <span class="shrink-0 w-8 h-8 rounded-full bg-ivory flex items-center justify-center text-royal group-open:bg-crimson group-open:text-white transition-colors">
+                <svg class="w-4 h-4 group-open:rotate-45 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-charcoal-light leading-relaxed">
+              {f.a}
+            </div>
+          </details>
+        ))
+      }
     </div>
   </div>
 </section>

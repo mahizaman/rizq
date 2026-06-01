@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config/site.js";
+const whatsappUrl = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hello Rizq, I'd like to know about your venue options.")}`;
+---
+
+<Layout title="Venues — Coming Soon | Rizq Catering">
+  <section class="min-h-[80vh] flex items-center justify-center px-6 py-32 bg-gradient-to-br from-royal via-royal-dark to-charcoal text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-crimson uppercase tracking-[0.3em] text-sm font-semibold mb-6">Coming Soon</p>
+      <h1 class="font-display text-4xl md:text-6xl mb-6 leading-tight">
+        Exclusive Venues, Curated by Rizq
+      </h1>
+      <p class="text-ivory/80 text-lg md:text-xl mb-10 leading-relaxed">
+        We're securing partnerships with Dhaka's most prestigious convention halls and luxury venues to bring you a complete event experience — venue, catering, and execution under one roof.
+      </p>
+      <p class="text-ivory/60 mb-10 italic">
+        Stay tuned. In the meantime, we'd love to discuss your event needs directly.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/book"
+          class="inline-flex items-center justify-center gap-2 bg-crimson hover:bg-crimson-dark text-white font-semibold px-8 py-4 rounded-full transition-all shadow-xl hover:scale-105"
+        >
+          Book an Event
+        </a>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur text-white font-semibold px-8 py-4 rounded-full transition-all border border-white/30"
+        >
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

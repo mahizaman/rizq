@@ -1,62 +1,63 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
 
-// Placeholder gallery — admin panel will manage these later
-const images = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
-  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
-  'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=80',
-  'https://images.unsplash.com/photo-1555244162-803834f70033?w=1200&q=80',
-  'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200&q=80',
-  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
-  'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1200&q=80',
-  'https://images.unsplash.com/photo-1574484284002-952d92456975?w=1200&q=80',
-  'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1200&q=80',
+// Replace these with your real photo filenames in /public/gallery/
+const photos = [
+  { src: "/gallery/1.jpg", caption: "Royal Walima Setup" },
+  { src: "/gallery/2.jpg", caption: "Signature Kacchi" },
+  { src: "/gallery/3.jpg", caption: "Corporate Gala" },
+  { src: "/gallery/4.jpg", caption: "Mehendi Ceremony" },
+  { src: "/gallery/5.jpg", caption: "Live BBQ Counter" },
+  { src: "/gallery/6.jpg", caption: "Anniversary Gala" },
+  { src: "/gallery/7.jpg", caption: "Premium Plating" },
+  { src: "/gallery/8.jpg", caption: "Product Launch" },
+  { src: "/gallery/9.jpg", caption: "Industrial Catering" },
 ];
 ---
 
 <Layout title="Gallery — Rizq Catering">
-  <Navbar />
-
-  <!-- Page Hero -->
-  <section class="relative h-[50vh] flex items-center justify-center bg-rizq-charcoal overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-rizq-blue/30 to-rizq-charcoal"></div>
-    <div class="relative z-10 text-center px-6">
-      <div class="reveal flex items-center justify-center gap-4 mb-6">
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em]">Gallery</span>
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-      </div>
-      <h1 class="reveal heading-display text-rizq-cream text-5xl md:text-7xl lg:text-8xl">
-        Moments of <span class="italic text-gradient-gold">Excellence</span>
+  <!-- Header -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-royal to-royal-dark text-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-crimson uppercase tracking-[0.3em] text-sm font-semibold mb-4">Gallery</p>
+      <h1 class="font-display text-4xl md:text-6xl mb-6 leading-tight">
+        Moments We've Created
       </h1>
+      <p class="text-ivory/80 text-lg md:text-xl max-w-2xl mx-auto">
+        A glimpse into the events, dishes, and experiences that define Rizq.
+      </p>
     </div>
   </section>
 
-  <!-- Masonry Gallery -->
-  <section class="section-padding bg-rizq-cream">
-    <div class="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 gap-6">
-      {images.map((src, i) => (
-        <div class="reveal mb-6 break-inside-avoid overflow-hidden cursor-hover group relative">
-          <img 
-            src={src} 
-            alt={`Gallery ${i + 1}`} 
-            class="w-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-rizq-blue/0 group-hover:bg-rizq-blue/30 transition-all duration-500 flex items-center justify-center">
-            <span class="text-rizq-cream opacity-0 group-hover:opacity-100 transition-opacity duration-500 heading-display text-2xl italic">View</span>
-          </div>
-        </div>
-      ))}
+  <!-- Masonry-style grid -->
+  <section class="py-20 px-6 bg-ivory">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {
+          photos.map((photo, i) => (
+            <div
+              class={`group relative overflow-hidden rounded-xl bg-gradient-to-br from-royal to-charcoal cursor-pointer ${
+                i % 5 === 0 ? "row-span-2 aspect-[3/5]" : "aspect-square"
+              }`}
+            >
+              <img
+                src={photo.src}
+                alt={photo.caption}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                onerror="this.style.display='none'"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                <p class="text-white font-display text-lg">{photo.caption}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <p class="text-center text-charcoal-light mt-12 italic">
+        More moments coming soon. Follow us on social media for the latest events.
+      </p>
     </div>
-
-    <p class="reveal text-center mt-16 text-rizq-charcoal/60 font-serif italic text-lg">
-      More moments being added regularly. Follow our journey.
-    </p>
   </section>
-
-  <Footer />
 </Layout>

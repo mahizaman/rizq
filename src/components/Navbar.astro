@@ -1,124 +1,150 @@
 ---
-const navItems = [
-  { label: 'Home', href: '/' },
-  { 
-    label: 'Services', 
-    href: '/services',
-    dropdown: [
-      { label: 'Wedding Ceremonies', href: '/services#wedding' },
-      { label: 'Social Events', href: '/services#social' },
-      { label: 'Corporate Events', href: '/services#corporate' },
-      { label: 'Industrial Catering', href: '/services#industrial' },
-    ]
-  },
-  { label: 'The Menu', href: '/menu' },
-  { label: 'Gallery', href: '/gallery' },
-];
+import { NAV_LINKS } from "../config/site.js";
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-[8000] transition-all duration-500" id="mainNav">
-  <div class="flex items-center justify-between px-8 md:px-12 py-4 backdrop-blur-md bg-rizq-charcoal/40 border-b border-rizq-gold/10">
-    
+<header
+  id="navbar"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-ivory/90 backdrop-blur-md border-b border-ivory-dark"
+>
+  <nav class="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 group">
-      <img src="/logo.png" alt="Rizq" class="h-12 md:h-14 transition-transform duration-500 group-hover:scale-110" />
+    <a href="/" class="flex items-center gap-2 shrink-0">
+      <img src="/rizq-logo.png" alt="Rizq" class="h-12 md:h-14 w-auto" />
     </a>
 
-    <!-- Desktop Menu -->
-    <ul class="hidden lg:flex items-center gap-10">
-      {navItems.map((item) => (
-        <li class="relative group">
-          <a 
-            href={item.href} 
-            class="text-rizq-cream text-sm uppercase tracking-[0.2em] font-medium hover:text-rizq-gold transition-colors duration-300 relative"
-          >
-            {item.label}
-            <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-rizq-gold group-hover:w-full transition-all duration-500"></span>
-          </a>
-          {item.dropdown && (
-            <ul class="absolute top-full left-0 mt-4 w-64 bg-rizq-charcoal/95 backdrop-blur-lg border border-rizq-gold/20 py-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-              {item.dropdown.map((sub) => (
-                <li>
-                  <a href={sub.href} class="block px-5 py-3 text-rizq-cream/80 text-sm hover:text-rizq-gold hover:bg-rizq-blue/30 transition-all duration-300">
-                    {sub.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
+    <!-- Desktop Nav -->
+    <ul class="hidden lg:flex items-center gap-8">
+      {
+        NAV_LINKS.map((link) => (
+          <li class="relative group">
+            {link.dropdown ? (
+              <>
+                <a
+                  href={link.href}
+                  class="text-charcoal hover:text-royal font-medium transition-colors flex items-center gap-1"
+                >
+                  {link.label}
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </a>
+                <ul class="absolute top-full left-0 mt-3 w-64 bg-white shadow-xl rounded-lg overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-ivory-dark">
+                  {link.dropdown.map((sub) => (
+                    <li>
+                      <a
+                        href={sub.href}
+                        class="block px-5 py-3 text-charcoal hover:bg-ivory hover:text-royal transition-colors"
+                      >
+                        {sub.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a
+                href={link.href}
+                class="text-charcoal hover:text-royal font-medium transition-colors"
+              >
+                {link.label}
+                {link.comingSoon && (
+                  <span class="ml-1 text-xs bg-ivory-dark text-charcoal-light px-2 py-0.5 rounded-full">
+                    Soon
+                  </span>
+                )}
+              </a>
+            )}
+          </li>
+        ))
+      }
     </ul>
 
-    <!-- Book Event CTA -->
-    <a 
-      href="/book-event" 
-      class="magnetic hidden md:inline-block px-7 py-3 bg-gradient-to-r from-rizq-red to-rizq-red-deep text-white text-xs uppercase tracking-[0.2em] font-semibold hover:shadow-[0_10px_30px_rgba(220,38,38,0.4)] transition-all duration-300"
+    <!-- CTA Button (desktop) -->
+    <a
+      href="/book"
+      class="hidden lg:inline-flex items-center gap-2 bg-crimson hover:bg-crimson-dark text-white font-semibold px-6 py-3 rounded-full transition-all shadow-md hover:shadow-lg hover:scale-105"
     >
       Book an Event
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
     </a>
 
-    <!-- Mobile Toggle -->
-    <button id="mobileToggle" class="lg:hidden text-rizq-cream" aria-label="Menu">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-toggle"
+      class="lg:hidden p-2 text-charcoal"
+      aria-label="Toggle menu"
+    >
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
-  </div>
+  </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobileMenu" class="lg:hidden fixed inset-0 bg-rizq-charcoal/98 backdrop-blur-xl flex-col items-center justify-center hidden">
-    <button id="mobileClose" class="absolute top-6 right-6 text-rizq-cream">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-    <ul class="flex flex-col gap-6 text-center">
-      {navItems.map((item) => (
-        <li>
-          <a href={item.href} class="text-rizq-cream text-2xl uppercase tracking-widest font-display hover:text-rizq-gold">
-            {item.label}
-          </a>
-        </li>
-      ))}
-      <li>
-        <a href="/book-event" class="inline-block mt-4 px-8 py-3 bg-rizq-red text-white uppercase tracking-widest text-sm">
-          Book an Event
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden bg-ivory border-t border-ivory-dark"
+  >
+    <ul class="px-6 py-4 space-y-1">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block py-3 text-charcoal hover:text-royal font-medium border-b border-ivory-dark/50"
+            >
+              {link.label}
+              {link.comingSoon && (
+                <span class="ml-2 text-xs bg-ivory-dark text-charcoal-light px-2 py-0.5 rounded-full">
+                  Soon
+                </span>
+              )}
+            </a>
+            {link.dropdown && (
+              <ul class="pl-4 pb-2">
+                {link.dropdown.map((sub) => (
+                  <li>
+                    <a
+                      href={sub.href}
+                      class="block py-2 text-sm text-charcoal-light hover:text-royal"
+                    >
+                      — {sub.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+      <li class="pt-3">
+        <a
+          href="/book"
+          class="block text-center bg-crimson hover:bg-crimson-dark text-white font-semibold px-6 py-3 rounded-full transition-all"
+        >
+          Book an Event →
         </a>
       </li>
     </ul>
   </div>
-</nav>
+</header>
 
 <script>
-  // Mobile menu toggle
-  const toggle = document.getElementById('mobileToggle');
-  const close = document.getElementById('mobileClose');
-  const menu = document.getElementById('mobileMenu');
-
-  toggle?.addEventListener('click', () => {
-    menu?.classList.remove('hidden');
-    menu?.classList.add('flex');
+  const toggle = document.getElementById("mobile-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
   });
 
-  close?.addEventListener('click', () => {
-    menu?.classList.add('hidden');
-    menu?.classList.remove('flex');
-  });
-
-  // Nav scroll behavior — hides on scroll down, shows on scroll up
-  const nav = document.getElementById('mainNav');
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const current = window.scrollY;
-    if (current > lastScroll && current > 100) {
-      nav?.style.setProperty('transform', 'translateY(-100%)');
+  // Add shadow to navbar on scroll
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add("shadow-md");
     } else {
-      nav?.style.setProperty('transform', 'translateY(0)');
+      navbar?.classList.remove("shadow-md");
     }
-    lastScroll = current;
   });
 </script>

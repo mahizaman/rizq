@@ -1,0 +1,55 @@
+---
+// Hardcoded for now — Phase 2 will pull from Supabase admin panel
+const testimonials = [
+  {
+    youtubeId: "dQw4w9WgXcQ",
+    name: "Mr. & Mrs. Rahman",
+    event: "Walima — 5,000 guests",
+  },
+  {
+    youtubeId: "dQw4w9WgXcQ",
+    name: "Beximco Group",
+    event: "Annual Corporate Gala",
+  },
+  {
+    youtubeId: "dQw4w9WgXcQ",
+    name: "The Chowdhury Family",
+    event: "Anniversary Celebration",
+  },
+];
+---
+
+<section class="py-20 lg:py-28 px-6 bg-ivory-dark/40">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">Testimonials</p>
+      <h2 class="font-display text-4xl md:text-5xl text-royal mb-4">Voices of Our Clients</h2>
+      <p class="text-charcoal-light max-w-2xl mx-auto text-lg">
+        Hear directly from the families and corporations who chose Rizq.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        testimonials.map((t) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all hover:-translate-y-1">
+            <div class="aspect-video relative bg-charcoal">
+              <iframe
+                src={`https://www.youtube.com/embed/${t.youtubeId}`}
+                title={`${t.name} testimonial`}
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                class="w-full h-full"
+              />
+            </div>
+            <div class="p-5">
+              <h4 class="font-display text-xl text-royal">{t.name}</h4>
+              <p class="text-crimson text-sm font-semibold mt-1">{t.event}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,134 +1,171 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config/site.js";
 
-const whatsappNumber = '8801XXXXXXXXX'; // <-- change this later to your real number
+const callForPrice = (item) =>
+  `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hello Rizq, I'd like to inquire about pricing for "${item}".`)}`;
 
-const dishes = [
+const bestSellers = [
   {
-    name: 'Signature Kacchi Gourmet',
-    description: 'The crown jewel. Aromatic basmati, slow-cooked premium mutton, saffron, ghee.',
-    image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=900&q=80',
-    badge: 'Best Seller',
+    name: "Signature Kacchi Gourmet",
+    description: "Aromatic basmati rice slow-cooked with premium mutton, saffron, and traditional spices — Rizq's crown jewel.",
+    image: "/menu-kacchi.jpg",
+    tag: "Signature",
   },
   {
-    name: 'Royal Roast Chicken',
-    description: 'Whole tandoor-marinated chicken, fragrant spices, charcoal finish.',
-    image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=900&q=80',
+    name: "Royal Beef Roast",
+    description: "Slow-roasted beef in rich, savory spices — a centerpiece of grandeur.",
+    image: "/menu-roast.jpg",
+    tag: "Best Seller",
   },
   {
-    name: 'Beef Rezala',
-    description: 'Creamy, mildly-spiced Mughlai classic with cashew & yogurt gravy.',
-    image: 'https://images.unsplash.com/photo-1545247181-516773cae754?w=900&q=80',
+    name: "Mughlai Chicken Roast",
+    description: "Tender whole chicken roasted in classic Mughlai style, served with fragrant herbs.",
+    image: "/menu-chicken.jpg",
+    tag: "Best Seller",
   },
   {
-    name: 'Chicken Reshmi Kebab',
-    description: 'Silky, melt-in-mouth grilled skewers with subtle cream finish.',
-    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=900&q=80',
+    name: "Premium Mutton Rezala",
+    description: "Creamy, fragrant mutton curry — refined elegance on every plate.",
+    image: "/menu-rezala.jpg",
+    tag: "Premium",
   },
   {
-    name: 'Mutton Rogan Josh',
-    description: 'Rich Kashmiri-style slow-braised mutton curry, deeply aromatic.',
-    image: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=900&q=80',
+    name: "Borhani & Firni Set",
+    description: "Traditional mint yogurt drink paired with creamy rice pudding — a quintessential finish.",
+    image: "/menu-dessert.jpg",
+    tag: "Classic",
   },
   {
-    name: 'Borhani',
-    description: 'Traditional spiced yogurt drink — the perfect Kacchi companion.',
-    image: 'https://images.unsplash.com/photo-1626202378011-1be437b352aa?w=900&q=80',
+    name: "Live BBQ Counter",
+    description: "On-site grilling station with kebabs, tikka, and signature roasts — a showstopper for any event.",
+    image: "/menu-bbq.jpg",
+    tag: "Experience",
+  },
+];
+
+const customPackages = [
+  {
+    name: "The Mehendi Package",
+    description: "Curated for intimate pre-wedding gatherings — featuring traditional Bengali appetizers, signature mains, and elegant desserts.",
+    tag: "Wedding",
   },
   {
-    name: 'Jorda',
-    description: 'Saffron-sweet finale, pistachio-laden royal dessert rice.',
-    image: 'https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=900&q=80',
+    name: "The Walima Grand",
+    description: "Royal-scale wedding feast — Kacchi, multiple roasts, live counters, and full service for 500-10,000 guests.",
+    tag: "Wedding",
   },
   {
-    name: 'Shahi Tukra',
-    description: 'Royal bread pudding soaked in saffron-cardamom rabri.',
-    image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=900&q=80',
+    name: "Corporate Gala Package",
+    description: "International-standard buffet with fusion options, designed for VIP clients and executive audiences.",
+    tag: "Corporate",
+  },
+  {
+    name: "Anniversary & Milestone",
+    description: "Bespoke menus for private celebrations — refined plating, signature dishes, and white-glove service.",
+    tag: "Social",
+  },
+  {
+    name: "Industrial Daily Catering",
+    description: "Premium daily meals at scale — nutritious, fresh, and reliable for workforces of 500-10,000.",
+    tag: "Industrial",
+  },
+  {
+    name: "Bespoke Curation",
+    description: "Have a unique vision? We design custom menus from scratch — fusion, international, or specific dietary needs.",
+    tag: "Custom",
   },
 ];
 ---
 
-<Layout title="The Menu — Rizq Catering">
-  <Navbar />
-
-  <!-- Page Hero -->
-  <section class="relative h-[60vh] flex items-center justify-center bg-rizq-charcoal overflow-hidden">
-    <div class="absolute inset-0 opacity-25" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1920&q=80'); background-size: cover; background-position: center;"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-rizq-charcoal/60 to-rizq-charcoal"></div>
-    <div class="relative z-10 text-center px-6">
-      <div class="reveal flex items-center justify-center gap-4 mb-6">
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-        <span class="text-rizq-gold text-xs uppercase tracking-[0.4em]">The Menu</span>
-        <span class="h-[1px] w-12 bg-rizq-gold"></span>
-      </div>
-      <h1 class="reveal heading-display text-rizq-cream text-5xl md:text-7xl lg:text-8xl">
-        Our <span class="italic text-gradient-gold">Best Sellers</span>
+<Layout title="The Menus — Rizq Catering">
+  <!-- Header -->
+  <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-royal to-royal-dark text-white text-center">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-crimson uppercase tracking-[0.3em] text-sm font-semibold mb-4">The Menus</p>
+      <h1 class="font-display text-4xl md:text-6xl mb-6 leading-tight">
+        Crafted to Impress
       </h1>
-      <p class="reveal mt-6 text-rizq-cream/70 font-serif italic text-xl max-w-2xl mx-auto">
-        Every dish, a celebration. Tap any to inquire about custom packages.
+      <p class="text-ivory/80 text-lg md:text-xl max-w-2xl mx-auto">
+        Explore our signature best sellers and fully customizable packages.
       </p>
     </div>
   </section>
 
-  <!-- Menu Grid -->
-  <section class="section-padding bg-rizq-cream">
-    <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      {dishes.map((dish) => (
-        <div class="reveal tilt-card group bg-white shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-hover relative">
-          
-          {dish.badge && (
-            <span class="absolute top-4 left-4 z-10 bg-rizq-red text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1">
-              {dish.badge}
-            </span>
-          )}
+  <!-- Best Sellers -->
+  <section class="py-20 px-6 bg-ivory">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">Best Sellers</p>
+        <h2 class="font-display text-4xl md:text-5xl text-royal">Signature Dishes</h2>
+      </div>
 
-          <div class="aspect-square overflow-hidden">
-            <img src={dish.image} alt={dish.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-          </div>
-          
-          <div class="p-6">
-            <h3 class="heading-display text-2xl text-rizq-charcoal mb-2 group-hover:text-rizq-blue transition-colors">
-              {dish.name}
-            </h3>
-            <p class="text-rizq-charcoal/70 font-serif italic text-sm mb-6 leading-relaxed">
-              {dish.description}
-            </p>
-            <a 
-              href={`https://wa.me/${whatsappNumber}?text=Hi%20Rizq,%20I'd%20like%20to%20know%20the%20price%20for%20${encodeURIComponent(dish.name)}`}
-              target="_blank"
-              rel="noopener"
-              class="block w-full text-center py-3 bg-rizq-blue text-white uppercase tracking-[0.2em] text-xs font-semibold hover:bg-rizq-red transition-colors duration-300"
-            >
-              Call for Price
-            </a>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Custom Packages CTA -->
-    <div class="reveal max-w-5xl mx-auto mt-24 bg-rizq-charcoal p-12 md:p-20 text-center relative overflow-hidden">
-      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle, #D4A84B 1px, transparent 1px); background-size: 30px 30px;"></div>
-      <div class="relative z-10">
-        <h3 class="heading-display text-4xl md:text-5xl text-rizq-cream mb-6">
-          Looking for a <span class="italic text-gradient-gold">Custom Package?</span>
-        </h3>
-        <p class="font-serif italic text-rizq-cream/70 text-xl mb-10 max-w-2xl mx-auto">
-          We design bespoke menus tailored to your event, palate, and prestige.
-        </p>
-        <a 
-          href={`https://wa.me/${whatsappNumber}?text=Hi%20Rizq,%20I'd%20like%20to%20discuss%20a%20custom%20package`}
-          target="_blank"
-          rel="noopener"
-          class="magnetic inline-block px-10 py-4 bg-rizq-red text-white uppercase tracking-[0.2em] text-sm font-semibold hover:shadow-[0_15px_40px_rgba(220,38,38,0.5)] transition-all duration-300"
-        >
-          Discuss on WhatsApp
-        </a>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          bestSellers.map((item) => (
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all hover:-translate-y-2 flex flex-col">
+              <div class="aspect-[4/3] relative bg-gradient-to-br from-royal to-charcoal overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onerror="this.style.display='none'"
+                />
+                <span class="absolute top-4 left-4 bg-crimson text-white text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                  {item.tag}
+                </span>
+              </div>
+              <div class="p-6 flex flex-col flex-1">
+                <h3 class="font-display text-2xl text-royal mb-3">{item.name}</h3>
+                <p class="text-charcoal-light leading-relaxed mb-6 flex-1">{item.description}</p>
+                <a
+                  href={callForPrice(item.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 bg-charcoal hover:bg-royal text-white font-semibold px-5 py-3 rounded-full transition-all"
+                >
+                  📞 Call for Price
+                </a>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <Footer />
+  <!-- Custom Packages -->
+  <section class="py-20 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-crimson uppercase tracking-[0.25em] text-sm font-semibold mb-3">Custom Packages</p>
+        <h2 class="font-display text-4xl md:text-5xl text-royal">Tailored to Your Event</h2>
+        <p class="text-charcoal-light max-w-2xl mx-auto mt-4 text-lg">
+          Every package is a starting point — fully customizable to your vision.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          customPackages.map((pkg) => (
+            <div class="group bg-ivory rounded-2xl p-7 border border-ivory-dark hover:shadow-xl hover:border-crimson transition-all hover:-translate-y-1 flex flex-col">
+              <span class="self-start bg-royal/10 text-royal text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+                {pkg.tag}
+              </span>
+              <h3 class="font-display text-2xl text-royal mb-3">{pkg.name}</h3>
+              <p class="text-charcoal-light leading-relaxed mb-6 flex-1">{pkg.description}</p>
+              <a
+                href={callForPrice(pkg.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 bg-crimson hover:bg-crimson-dark text-white font-semibold px-5 py-3 rounded-full transition-all"
+              >
+                📞 Call for Price
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>
